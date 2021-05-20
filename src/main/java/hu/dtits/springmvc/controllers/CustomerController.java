@@ -24,32 +24,31 @@ public class CustomerController {
         return new CustomerListDTO(customerService.getAllCustomers());
     }
 
-    @GetMapping({"/{id}"})
+    @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public CustomerDTO getCustomerById(@PathVariable Long id) {
         return customerService.getCustomerById(id);
     }
 
-
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public CustomerDTO createNewCustomer(@RequestBody CustomerDTO customerDTO) {
+    public CustomerDTO createCustomer(@RequestBody CustomerDTO customerDTO) {
         return customerService.createNewCustomer(customerDTO);
     }
 
-    @PutMapping({"/{id}"})
+    @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public CustomerDTO updateCustomer(@PathVariable Long id, @RequestBody CustomerDTO customerDTO) {
         return customerService.saveCustomerByDTO(id, customerDTO);
     }
 
-    @PatchMapping({"/{id}"})
+    @PatchMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public CustomerDTO patchCustomer(@PathVariable Long id, @RequestBody CustomerDTO customerDTO) {
         return customerService.patchCustomer(id, customerDTO);
     }
 
-    @DeleteMapping({"/{id}"})
+    @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public void deleteCustomer(@PathVariable Long id) {
         customerService.deleteCustomerById(id);
