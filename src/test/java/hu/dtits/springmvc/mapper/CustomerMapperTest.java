@@ -15,7 +15,7 @@ public class CustomerMapperTest {
     CustomerMapper customerMapper = CustomerMapper.INSTANCE;
 
     @Test
-    public void customerToCustomerDTO() throws Exception {
+    public void testCustomerToCustomerDTO() throws Exception {
         Customer customer = new Customer();
         customer.setFirstname(FIRSTNAME);
         customer.setLastname(LASTNAME);

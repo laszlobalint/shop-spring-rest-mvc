@@ -6,14 +6,10 @@ import hu.dtits.springmvc.models.VendorListDTO;
 import hu.dtits.springmvc.services.interfaces.VendorService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
@@ -56,7 +52,7 @@ public class VendorControllerTest {
     }
 
     @Test
-    public void getVendorList() throws Exception {
+    public void testGetVendors() throws Exception {
         VendorListDTO vendorListDTO = new VendorListDTO(Arrays.asList(vendorDTO_1, vendorDTO_2));
 
         given(vendorService.getAllVendors()).willReturn(vendorListDTO);
@@ -68,7 +64,7 @@ public class VendorControllerTest {
     }
 
     @Test
-    public void getVendorById() throws Exception {
+    public void testGetVendorById() throws Exception {
 
         given(vendorService.getVendorById(anyLong())).willReturn(vendorDTO_1);
 
@@ -79,7 +75,7 @@ public class VendorControllerTest {
     }
 
     @Test
-    public void createNewVendor() throws Exception {
+    public void testCreateVendor() throws Exception {
 
         given(vendorService.createNewVendor(vendorDTO_1)).willReturn(vendorDTO_1);
 
@@ -91,7 +87,7 @@ public class VendorControllerTest {
     }
 
     @Test
-    public void updateVendor() throws Exception {
+    public void testUpdateVendor() throws Exception {
 
         given(vendorService.saveVendorByDTO(anyLong(), any(VendorDTO.class))).willReturn(vendorDTO_1);
 
@@ -103,7 +99,7 @@ public class VendorControllerTest {
     }
 
     @Test
-    public void patchVendor() throws Exception {
+    public void testPatchVendor() throws Exception {
         given(vendorService.saveVendorByDTO(anyLong(), any(VendorDTO.class))).willReturn(vendorDTO_1);
 
         mockMvc.perform(patch(VendorController.BASE_URL + "/1")
@@ -114,7 +110,7 @@ public class VendorControllerTest {
     }
 
     @Test
-    public void deleteVendor() throws Exception {
+    public void testDeleteVendor() throws Exception {
         mockMvc.perform(delete(VendorController.BASE_URL + "/1"))
                 .andExpect(status().isOk());
 

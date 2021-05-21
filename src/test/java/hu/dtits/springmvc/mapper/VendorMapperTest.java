@@ -14,7 +14,7 @@ public class VendorMapperTest {
     VendorMapper vendorMapper = VendorMapper.INSTANCE;
 
     @Test
-    public void vendorToVendorDTO() throws Exception {
+    public void testVendorToVendorDTO() throws Exception {
         Vendor vendor = new Vendor();
         vendor.setName(NAME);
 
@@ -24,7 +24,7 @@ public class VendorMapperTest {
     }
 
     @Test
-    public void vendorDTOtoVendor() throws Exception {
+    public void testVendorDTOtoVendor() throws Exception {
         VendorDTO vendorDTO = new VendorDTO();
         vendorDTO.setName(NAME);
 

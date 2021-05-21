@@ -1,25 +1,15 @@
 package hu.dtits.springmvc.controllers;
 
-import hu.dtits.springmvc.SpringMvcApplication;
 import hu.dtits.springmvc.exceptions.ResourceNotFoundException;
 import hu.dtits.springmvc.exceptions.RestResponseEntityExceptionHandler;
 import hu.dtits.springmvc.models.CategoryDTO;
-import hu.dtits.springmvc.services.CategoryServiceImpl;
 import hu.dtits.springmvc.services.interfaces.CategoryService;
-import org.junit.Before;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 

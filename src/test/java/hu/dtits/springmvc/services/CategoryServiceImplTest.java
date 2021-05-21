@@ -9,6 +9,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import java.util.Arrays;
 import java.util.List;
@@ -17,6 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
+@DataJpaTest
 public class CategoryServiceImplTest {
 
     public static final Long ID = 2L;
@@ -36,7 +38,7 @@ public class CategoryServiceImplTest {
     }
 
     @Test
-    public void getAllCategories() {
+    public void testGetCategories() {
         List<Category> categories = Arrays.asList(new Category(), new Category(), new Category());
 
         when(categoryRepository.findAll()).thenReturn(categories);
@@ -47,7 +49,7 @@ public class CategoryServiceImplTest {
     }
 
     @Test
-    public void getCategoryByName() {
+    public void testGetCategoryByName() {
         Category category = new Category();
         category.setId(ID);
         category.setName(NAME);
