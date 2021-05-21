@@ -4,16 +4,15 @@ import hu.dtits.springmvc.models.VendorDTO;
 import hu.dtits.springmvc.models.VendorListDTO;
 
 public interface VendorService {
+    VendorDTO findById(Long id);
 
-    VendorDTO getVendorById(Long id);
+    VendorListDTO findAll();
 
-    VendorListDTO getAllVendors();
+    VendorDTO save(VendorDTO vendorDTO);
 
-    VendorDTO createNewVendor(VendorDTO vendorDTO);
+    VendorDTO saveByDTO(Long id, VendorDTO vendorDTO);
 
-    VendorDTO saveVendorByDTO(Long id, VendorDTO vendorDTO);
+    VendorDTO patch(Long id, VendorDTO vendorDTO);
 
-    VendorDTO patchVendor(Long id, VendorDTO vendorDTO);
-
-    void deleteVendorById(Long id);
+    void deleteById(Long id);
 }

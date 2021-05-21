@@ -21,7 +21,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public List<CategoryDTO> getAllCategories() {
+    public List<CategoryDTO> findAll() {
 
         return categoryRepository
                 .findAll()
@@ -31,7 +31,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public CategoryDTO getCategoryByName(String name) {
+    public CategoryDTO findByName(String name) {
 
         return categoryMapper.categoryToCategoryDTO(categoryRepository.findByName(name));
     }

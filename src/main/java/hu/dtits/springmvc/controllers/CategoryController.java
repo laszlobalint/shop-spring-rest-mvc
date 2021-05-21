@@ -25,13 +25,13 @@ public class CategoryController {
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public CategoryListDTO getCategories() {
-        return new CategoryListDTO(categoryService.getAllCategories());
+        return new CategoryListDTO(categoryService.findAll());
     }
 
     @ApiOperation("Get a Category by name property")
     @GetMapping("/{name}")
     @ResponseStatus(HttpStatus.OK)
     public CategoryDTO getCategoryByName(@PathVariable String name) {
-        return categoryService.getCategoryByName(name);
+        return categoryService.findByName(name);
     }
 }

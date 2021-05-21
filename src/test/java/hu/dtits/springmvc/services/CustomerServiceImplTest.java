@@ -62,7 +62,7 @@ public class CustomerServiceImplTest {
         CustomerDTO customerDTO = new CustomerDTO();
         customerDTO.setFirstname(updatedName);
 
-        customerService.patchCustomer(id, customerDTO);
+        customerService.patch(id, customerDTO);
 
         if (customerRepository.findById(id).isPresent()) {
             Customer updatedCustomer = customerRepository.findById(id).get();
@@ -88,7 +88,7 @@ public class CustomerServiceImplTest {
         CustomerDTO customerDTO = new CustomerDTO();
         customerDTO.setLastname(updatedName);
 
-        customerService.patchCustomer(id, customerDTO);
+        customerService.patch(id, customerDTO);
 
         if (customerRepository.findById(id).isPresent()) {
             Customer updatedCustomer = customerRepository.findById(id).get();

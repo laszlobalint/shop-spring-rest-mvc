@@ -61,7 +61,7 @@ public class CustomerControllerTest extends AbstractRestControllerTest {
         customer2.setLastname("Axe");
         customer2.setCustomerUrl(CustomerController.BASE_URL + "/2");
 
-        when(customerService.getAllCustomers()).thenReturn(Arrays.asList(customer1, customer2));
+        when(customerService.findAll()).thenReturn(Arrays.asList(customer1, customer2));
 
         mockMvc.perform(get(CustomerController.BASE_URL)
                 .contentType(MediaType.APPLICATION_JSON))
@@ -76,7 +76,7 @@ public class CustomerControllerTest extends AbstractRestControllerTest {
         customer1.setLastname(LASTNAME);
         customer1.setCustomerUrl(CustomerController.BASE_URL + "/" + ID);
 
-        when(customerService.getCustomerById(anyLong())).thenReturn(customer1);
+        when(customerService.findById(anyLong())).thenReturn(customer1);
 
         mockMvc.perform(get(CustomerController.BASE_URL + "/" + ID)
                 .contentType(MediaType.APPLICATION_JSON))
@@ -95,7 +95,7 @@ public class CustomerControllerTest extends AbstractRestControllerTest {
         returnDTO.setLastname(customer.getLastname());
         returnDTO.setCustomerUrl(CustomerController.BASE_URL + "/" + ID);
 
-        when(customerService.createNewCustomer(customer)).thenReturn(returnDTO);
+        when(customerService.save(customer)).thenReturn(returnDTO);
 
         mockMvc.perform(post(CustomerController.BASE_URL)
                 .contentType(MediaType.APPLICATION_JSON)
@@ -116,7 +116,7 @@ public class CustomerControllerTest extends AbstractRestControllerTest {
         returnDTO.setLastname(customer.getLastname());
         returnDTO.setCustomerUrl(CustomerController.BASE_URL + "/" + ID);
 
-        when(customerService.saveCustomerByDTO(anyLong(), any(CustomerDTO.class))).thenReturn(returnDTO);
+        when(customerService.saveByDTO(anyLong(), any(CustomerDTO.class))).thenReturn(returnDTO);
 
         mockMvc.perform(put(CustomerController.BASE_URL + "/" + ID)
                 .contentType(MediaType.APPLICATION_JSON)
@@ -137,7 +137,7 @@ public class CustomerControllerTest extends AbstractRestControllerTest {
         returnDTO.setLastname("Mercury");
         returnDTO.setCustomerUrl(CustomerController.BASE_URL + "/" + ID);
 
-        when(customerService.patchCustomer(anyLong(), any(CustomerDTO.class))).thenReturn(returnDTO);
+        when(customerService.patch(anyLong(), any(CustomerDTO.class))).thenReturn(returnDTO);
 
         mockMvc.perform(patch(CustomerController.BASE_URL + "/" + ID)
                 .contentType(MediaType.APPLICATION_JSON)
@@ -155,13 +155,13 @@ public class CustomerControllerTest extends AbstractRestControllerTest {
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
 
-        verify(customerService).deleteCustomerById(anyLong());
+        verify(customerService).deleteById(anyLong());
     }
 
     @Test
     public void testNotFoundException() throws Exception {
 
-        when(customerService.getCustomerById(anyLong())).thenThrow(ResourceNotFoundException.class);
+        when(customerService.findById(anyLong())).thenThrow(ResourceNotFoundException.class);
 
         mockMvc.perform(get(CustomerController.BASE_URL + "/222")
                 .contentType(MediaType.APPLICATION_JSON))

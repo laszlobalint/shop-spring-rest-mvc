@@ -55,7 +55,7 @@ public class VendorControllerTest {
     public void testGetVendors() throws Exception {
         VendorListDTO vendorListDTO = new VendorListDTO(Arrays.asList(vendorDTO_1, vendorDTO_2));
 
-        given(vendorService.getAllVendors()).willReturn(vendorListDTO);
+        given(vendorService.findAll()).willReturn(vendorListDTO);
 
         mockMvc.perform(get(VendorController.BASE_URL)
                 .contentType(MediaType.APPLICATION_JSON))
@@ -66,7 +66,7 @@ public class VendorControllerTest {
     @Test
     public void testGetVendorById() throws Exception {
 
-        given(vendorService.getVendorById(anyLong())).willReturn(vendorDTO_1);
+        given(vendorService.findById(anyLong())).willReturn(vendorDTO_1);
 
         mockMvc.perform(get(VendorController.BASE_URL + "/1")
                 .contentType(MediaType.APPLICATION_JSON))
@@ -77,7 +77,7 @@ public class VendorControllerTest {
     @Test
     public void testCreateVendor() throws Exception {
 
-        given(vendorService.createNewVendor(vendorDTO_1)).willReturn(vendorDTO_1);
+        given(vendorService.save(vendorDTO_1)).willReturn(vendorDTO_1);
 
         mockMvc.perform(post(VendorController.BASE_URL)
                 .contentType(MediaType.APPLICATION_JSON)
@@ -89,7 +89,7 @@ public class VendorControllerTest {
     @Test
     public void testUpdateVendor() throws Exception {
 
-        given(vendorService.saveVendorByDTO(anyLong(), any(VendorDTO.class))).willReturn(vendorDTO_1);
+        given(vendorService.saveByDTO(anyLong(), any(VendorDTO.class))).willReturn(vendorDTO_1);
 
         mockMvc.perform(put(VendorController.BASE_URL + "/1")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -100,7 +100,7 @@ public class VendorControllerTest {
 
     @Test
     public void testPatchVendor() throws Exception {
-        given(vendorService.saveVendorByDTO(anyLong(), any(VendorDTO.class))).willReturn(vendorDTO_1);
+        given(vendorService.saveByDTO(anyLong(), any(VendorDTO.class))).willReturn(vendorDTO_1);
 
         mockMvc.perform(patch(VendorController.BASE_URL + "/1")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -114,7 +114,7 @@ public class VendorControllerTest {
         mockMvc.perform(delete(VendorController.BASE_URL + "/1"))
                 .andExpect(status().isOk());
 
-        then(vendorService).should().deleteVendorById(anyLong());
+        then(vendorService).should().deleteById(anyLong());
 
     }
 }

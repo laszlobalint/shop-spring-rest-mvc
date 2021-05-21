@@ -49,7 +49,7 @@ public class VendorServiceImplTest {
 
         given(vendorRepository.findById(anyLong())).willReturn(Optional.of(vendor));
 
-        VendorDTO vendorDTO = vendorService.getVendorById(1L);
+        VendorDTO vendorDTO = vendorService.findById(1L);
 
         then(vendorRepository).should(times(1)).findById(anyLong());
 
@@ -62,7 +62,7 @@ public class VendorServiceImplTest {
 
         given(vendorRepository.findAll()).willReturn(vendors);
 
-        VendorListDTO vendorListDTO = vendorService.getAllVendors();
+        VendorListDTO vendorListDTO = vendorService.findAll();
 
         then(vendorRepository).should(times(1)).findAll();
 
@@ -77,7 +77,7 @@ public class VendorServiceImplTest {
 
         given(vendorRepository.save(any(Vendor.class))).willReturn(vendor);
 
-        VendorDTO savedVendorDTO = vendorService.createNewVendor(vendorDTO);
+        VendorDTO savedVendorDTO = vendorService.save(vendorDTO);
 
         then(vendorRepository).should().save(any(Vendor.class));
 
@@ -92,7 +92,7 @@ public class VendorServiceImplTest {
 
         given(vendorRepository.save(any(Vendor.class))).willReturn(vendor);
 
-        VendorDTO savedVendorDTO = vendorService.saveVendorByDTO(ID_1, vendorDTO);
+        VendorDTO savedVendorDTO = vendorService.saveByDTO(ID_1, vendorDTO);
 
         then(vendorRepository).should().save(any(Vendor.class));
 
@@ -108,7 +108,7 @@ public class VendorServiceImplTest {
         given(vendorRepository.findById(anyLong())).willReturn(Optional.of(vendor));
         given(vendorRepository.save(any(Vendor.class))).willReturn(vendor);
 
-        VendorDTO savedVendorDTO = vendorService.patchVendor(ID_1, vendorDTO);
+        VendorDTO savedVendorDTO = vendorService.patch(ID_1, vendorDTO);
 
         then(vendorRepository).should().save(any(Vendor.class));
         then(vendorRepository).should(times(1)).findById(anyLong());
@@ -117,7 +117,7 @@ public class VendorServiceImplTest {
 
     @Test
     public void testDeleteVendorById() {
-        vendorService.deleteVendorById(1L);
+        vendorService.deleteById(1L);
 
         then(vendorRepository).should().deleteById(anyLong());
     }

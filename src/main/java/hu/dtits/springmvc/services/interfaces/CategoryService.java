@@ -5,8 +5,7 @@ import hu.dtits.springmvc.models.CategoryDTO;
 import java.util.List;
 
 public interface CategoryService {
+    List<CategoryDTO> findAll();
 
-    List<CategoryDTO> getAllCategories();
-
-    CategoryDTO getCategoryByName(String name);
+    CategoryDTO findByName(String name);
 }

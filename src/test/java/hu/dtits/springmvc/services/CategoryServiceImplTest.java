@@ -43,7 +43,7 @@ public class CategoryServiceImplTest {
 
         when(categoryRepository.findAll()).thenReturn(categories);
 
-        List<CategoryDTO> categoryDTOS = categoryService.getAllCategories();
+        List<CategoryDTO> categoryDTOS = categoryService.findAll();
 
         assertEquals(3, categoryDTOS.size());
     }
@@ -56,7 +56,7 @@ public class CategoryServiceImplTest {
 
         when(categoryRepository.findByName(anyString())).thenReturn(category);
 
-        CategoryDTO categoryDTO = categoryService.getCategoryByName(NAME);
+        CategoryDTO categoryDTO = categoryService.findByName(NAME);
 
         assertEquals(ID, categoryDTO.getId());
         assertEquals(NAME, categoryDTO.getName());

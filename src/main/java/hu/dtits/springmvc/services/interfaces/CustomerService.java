@@ -5,16 +5,15 @@ import hu.dtits.springmvc.models.CustomerDTO;
 import java.util.List;
 
 public interface CustomerService {
+    List<CustomerDTO> findAll();
 
-    List<CustomerDTO> getAllCustomers();
+    CustomerDTO findById(Long id);
 
-    CustomerDTO getCustomerById(Long id);
+    CustomerDTO save(CustomerDTO customerDTO);
 
-    CustomerDTO createNewCustomer(CustomerDTO customerDTO);
+    CustomerDTO saveByDTO(Long id, CustomerDTO customerDTO);
 
-    CustomerDTO saveCustomerByDTO(Long id, CustomerDTO customerDTO);
+    CustomerDTO patch(Long id, CustomerDTO customerDTO);
 
-    CustomerDTO patchCustomer(Long id, CustomerDTO customerDTO);
-
-    void deleteCustomerById(Long id);
+    void deleteById(Long id);
 }

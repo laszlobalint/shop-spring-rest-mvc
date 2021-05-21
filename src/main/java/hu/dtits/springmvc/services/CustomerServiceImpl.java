@@ -24,40 +24,40 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public List<CustomerDTO> getAllCustomers() {
+    public List<CustomerDTO> findAll() {
         return customerRepository
                 .findAll()
                 .stream()
                 .map(customer -> {
                     CustomerDTO customerDTO = customerMapper.customerToCustomerDTO(customer);
-                    customerDTO.setCustomerUrl(getCustomerUrl(customer.getId()));
+                    customerDTO.setCustomerUrl(getUrl(customer.getId()));
                     return customerDTO;
                 })
                 .collect(Collectors.toList());
     }
 
     @Override
-    public CustomerDTO getCustomerById(Long id) {
+    public CustomerDTO findById(Long id) {
 
         return customerRepository
                 .findById(id)
                 .map(customerMapper::customerToCustomerDTO)
                 .map(customerDTO -> {
-                    customerDTO.setCustomerUrl(getCustomerUrl(id));
+                    customerDTO.setCustomerUrl(getUrl(id));
                     return customerDTO;
                 })
                 .orElseThrow(ResourceNotFoundException::new);
     }
 
     @Override
-    public CustomerDTO createNewCustomer(CustomerDTO customerDTO) {
+    public CustomerDTO save(CustomerDTO customerDTO) {
 
         return saveAndReturnDTO(customerMapper.customerDtoToCustomer(customerDTO));
     }
 
 
     @Override
-    public CustomerDTO saveCustomerByDTO(Long id, CustomerDTO customerDTO) {
+    public CustomerDTO saveByDTO(Long id, CustomerDTO customerDTO) {
         Customer customer = customerMapper.customerDtoToCustomer(customerDTO);
         customer.setId(id);
 
@@ -65,7 +65,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public CustomerDTO patchCustomer(Long id, CustomerDTO customerDTO) {
+    public CustomerDTO patch(Long id, CustomerDTO customerDTO) {
         return customerRepository.findById(id)
                 .map(customer -> {
 
@@ -76,26 +76,26 @@ public class CustomerServiceImpl implements CustomerService {
                         customer.setLastname(customerDTO.getLastname());
 
                     CustomerDTO returnDto = customerMapper.customerToCustomerDTO(customerRepository.save(customer));
-                    returnDto.setCustomerUrl(getCustomerUrl(id));
+                    returnDto.setCustomerUrl(getUrl(id));
 
                     return returnDto;
                 }).orElseThrow(ResourceNotFoundException::new);
     }
 
     @Override
-    public void deleteCustomerById(Long id) {
+    public void deleteById(Long id) {
         customerRepository.deleteById(id);
     }
 
     private CustomerDTO saveAndReturnDTO(Customer customer) {
         Customer savedCustomer = customerRepository.save(customer);
         CustomerDTO returnDto = customerMapper.customerToCustomerDTO(savedCustomer);
-        returnDto.setCustomerUrl(getCustomerUrl(savedCustomer.getId()));
+        returnDto.setCustomerUrl(getUrl(savedCustomer.getId()));
 
         return returnDto;
     }
 
-    private String getCustomerUrl(Long id) {
+    private String getUrl(Long id) {
 
         return CustomerController.BASE_URL + "/" + id;
     }

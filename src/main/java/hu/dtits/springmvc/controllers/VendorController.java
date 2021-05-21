@@ -21,36 +21,36 @@ public class VendorController {
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public VendorListDTO getVendors() {
-        return vendorService.getAllVendors();
+        return vendorService.findAll();
     }
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public VendorDTO getVendorById(@PathVariable Long id) {
-        return vendorService.getVendorById(id);
+        return vendorService.findById(id);
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public VendorDTO createVendor(@RequestBody VendorDTO vendorDTO) {
-        return vendorService.createNewVendor(vendorDTO);
+        return vendorService.save(vendorDTO);
     }
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public VendorDTO updateVendor(@PathVariable Long id, @RequestBody VendorDTO vendorDTO) {
-        return vendorService.saveVendorByDTO(id, vendorDTO);
+        return vendorService.saveByDTO(id, vendorDTO);
     }
 
     @PatchMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public VendorDTO patchVendor(@PathVariable Long id, @RequestBody VendorDTO vendorDTO) {
-        return vendorService.saveVendorByDTO(id, vendorDTO);
+        return vendorService.saveByDTO(id, vendorDTO);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public void deleteVendor(@PathVariable Long id) {
-        vendorService.deleteVendorById(id);
+        vendorService.deleteById(id);
     }
 }
